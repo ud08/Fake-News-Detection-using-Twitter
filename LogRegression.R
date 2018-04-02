@@ -1,6 +1,6 @@
 TwitterLRData <- read.csv(file.choose(),header=T,stringsAsFactors = FALSE)
 View(TwitterLRData)
-
+install.packages("aod")
 library(aod)
 library(ggplot2)
 
@@ -17,7 +17,7 @@ TwitterSubsetLRData <- subset(TwitterLRData, select=c(retweet_count, favorite_co
                                                       no_of_urls,no_of_colon_marks,
                                                       no_of_words,polarity,no_of_firstOrderPronoun,
                                                       no_of_secondOrderPronoun, no_of_thirdOrderPronoun,
-                                                      Source_Category,Age_of_UserAccount_indays,
+                                                      Source_Category,Age_of_UserAccounts_in_days,
                                                       Final.Label, Label))
 
 
@@ -55,7 +55,7 @@ logRegModel <- glm(Label~ retweet_count+
                      + no_of_hashtags + no_of_mentions
                      + no_of_urls + no_of_words + polarity + Source_Category
                      + no_of_firstOrderPronoun + no_of_secondOrderPronoun
-                     + no_of_thirdOrderPronoun + Age_of_UserAccount_indays,
+                     + no_of_thirdOrderPronoun + Age_of_UserAccounts_in_days,
                      data = tweet_trainLR,
                      family = binomial)
 
@@ -106,7 +106,7 @@ TwitterLRCVData <- subset(TwitterLRData, select=c(retweet_count, favorite_count,
                                                       no_of_urls,no_of_colon_marks,
                                                       no_of_words,polarity,no_of_firstOrderPronoun,
                                                       no_of_secondOrderPronoun, no_of_thirdOrderPronoun,
-                                                      Source_Category,Age_of_UserAccount_indays,
+                                                      Source_Category,Age_of_UserAccounts_in_days,
                                                       Label))
 k = 10 #no of folds
 View(TwitterLRCVData)
